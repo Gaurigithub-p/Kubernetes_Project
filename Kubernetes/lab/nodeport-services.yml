@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: nginx-services
+ labels:
+   app: nginx-app  # Added app label for consistency
+spec:
+ selector:
+   app: nginx-app  # Updated to match Deployment labels
+   type: frontend  # Retained to ensure proper selection
+ ports:
+   - protocol: TCP
+     port: 80        # External Service Port
+     targetPort: 80  # Pod’s Container Port
+ type: NodePort

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet 
+metadata: 
+  name: nginx-replicaset
+  labels: 
+    app: nginx-replicaset
+    env: dev
+spec: 
+  replicas: 3
+  selector: 
+    matchLabels: 
+      app: nginx-app
+  template:  
+    metadata: 
+      name: pod-nginx
+      labels: 
+        app: nginx-app
+        env: dev
+        type: frontend
+    spec: 
+      containers: 
+        - name: nginx-container
+          image: registry.k8s.io/nginx:latest
+          ports:
+            - containerPort: 80
